@@ -1,4 +1,4 @@
-package ar.com.estigiait.ui;
+package ar.com.estigiait.ds.ui;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -16,7 +16,7 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-import org.eclipse.wb.swing.FocusTraversalOnArray;
+//import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class ComprobanteDesktopSwing extends JFrame implements ActionListener {
 	/**
@@ -37,7 +37,7 @@ public class ComprobanteDesktopSwing extends JFrame implements ActionListener {
 		txp.setEditable(false);
 		txp.setBounds(166, 125, 255, 25);
 		getContentPane().add(txp);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn}));
+		//getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn}));
 		
 		
 		
@@ -79,7 +79,7 @@ public class ComprobanteDesktopSwing extends JFrame implements ActionListener {
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnNewButton.setBounds(148, 450, 293, 56);
 		getContentPane().add(btnNewButton);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn1}));
+//		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn1}));
 		
 		
 		setTitle("Estigia IT");

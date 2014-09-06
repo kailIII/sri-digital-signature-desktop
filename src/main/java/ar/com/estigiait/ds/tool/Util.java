@@ -98,10 +98,8 @@ public class Util{
 		Properties prop = new Properties();
 		InputStream input = null;
 	 
-		try {
-			System.out.println("EMILIO :"+Constants.PROP_EXTERNAL);
-			System.out.println(makeURL(Constants.PROP_EXTERNAL));
-	 		URL fileURL = new URL(System.getProperty("user.dir")+ Constants.PROP_EXTERNAL);	
+		try {			
+	 		URL fileURL = makeUrlExternal(Constants.PROP_EXTERNAL);	
 	 		System.out.println(fileURL);
 			input = fileURL.openStream();
 	 
@@ -193,7 +191,7 @@ public class Util{
      * @throws java.net.MalformedURLException if the pathname can't be turned into
      *         a proper URL.
      */
-    public static URL makeURL(String pathname) throws MalformedURLException {
+    public static URL makeUrlExternal(String pathname) throws MalformedURLException {
         if (pathname.startsWith("/")) {
           return new URL("file://" + pathname);
         }

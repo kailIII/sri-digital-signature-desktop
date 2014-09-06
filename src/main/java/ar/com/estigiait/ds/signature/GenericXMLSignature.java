@@ -326,7 +326,7 @@ public abstract class GenericXMLSignature {
             if (conf.getProperty(Constants.MODE).equals(Constants.MODE_DEV)){
             	url = GenericXMLSignature.class.getResource(pathSignature);
             }else{
-            	url = Util.makeURL(pathSignature);
+            	url = Util.makeUrlExternal(pathSignature);
             }
             
             
