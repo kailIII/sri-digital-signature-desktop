@@ -1,4 +1,4 @@
-package ar.com.estigiait.ds.server;
+package ar.com.estigiait.ds.route;
 
 import java.util.Properties;
 
@@ -47,6 +47,9 @@ public class FileRoute extends RouteBuilder {
         	.process(new SignatureProcessor(conf))
             .to(conf.getProperty(Constants.FOLDER_DESTINY))
             .log("Firmado del archivo: ${file:name} completo.");
+        
+        
+        
 
         // use system out so it stand out
 //        System.out.println("*********************************************************************************");
@@ -73,13 +76,15 @@ public class FileRoute extends RouteBuilder {
             	
     	public void process(Exchange exchange) throws Exception {
     		
-    		
+    		String society = null;
+    		    		
             String body = exchange.getIn().getBody(String.class);
             exchange.getOut().setHeader("CamelFileName", exchange.getIn().getHeader("CamelFileName") );
-            //exchange.getOut().setBody(XadesBesSignature.firmar(body,FtpRoute.class.getResource("/usr0061.p12").getPath(), "usr0061"));
-            //System.getProperty("user.dir")+"/resources/1791897498001.pfx"
             try{ 
-              exchange.getOut().setBody(XadesBesSignature.firmar(body, conf.getProperty(Constants.FOLDER_CERTIFICATE), conf.getProperty(Constants.CERTIFICATE_PASS), conf));
+            	//obtenemos la carpeta padre del path para obtener la sociedad a la cual pertenece el tramite
+            	society = Util.getSocietyNameFromRelativePathFile(exchange.getIn().getHeader("CamelFileRelativePath", String.class));  
+            	System.out.println("SOOOOOOOCIEDAD"+society);
+            	exchange.getOut().setBody(XadesBesSignature.firmar(body, conf.getProperty(Constants.CERTIFICATE_PATH+society), conf.getProperty(Constants.CERTIFICATE_PASS+society), conf));
             }catch(Exception e){
             	e.printStackTrace();
             }

@@ -12,7 +12,7 @@ public final class Constants {
 	//configuracion de la aplicacion
 	public final static String FOLDER_ORIGIN = "app.folder.origin";
 	public final static String FOLDER_DESTINY = "app.folder.destiny";
-	public final static String FOLDER_CERTIFICATE = "app.folder.certificate";
-	public final static String CERTIFICATE_PASS = "app.certificate.pass";
+	public final static String CERTIFICATE_PATH = "app.path.certificate.";
+	public final static String CERTIFICATE_PASS = "app.pass.certificate.";
 	
 }

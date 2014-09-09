@@ -2,7 +2,7 @@ package ar.com.estigiait.ds.signature;
 
 import org.apache.camel.main.Main;
 
-import ar.com.estigiait.ds.server.FileRoute;
+import ar.com.estigiait.ds.route.FileRoute;
 
 public class TestFtpSignature {
 	

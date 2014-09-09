@@ -198,6 +198,20 @@ public class Util{
         String userdir = System.getProperty("user.dir");
         return new File(userdir, pathname).toURL();
 
-      }
+    }
+    
+    /**
+     * Este metodo devuelve el nombre de la sociedad de un path relativo
+     * 	@return String name
+     * 					of society
+     * 
+     */
+    public static String getSocietyNameFromRelativePathFile(String relativePath){
+    	String result = null;
+    	if (relativePath != null){
+    		result = relativePath.substring(0, relativePath.indexOf("\\"));
+    	}
+    	return result;
+    }
 	
 }

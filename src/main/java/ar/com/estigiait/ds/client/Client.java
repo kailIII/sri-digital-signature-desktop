@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import org.apache.camel.main.Main;
 
-import ar.com.estigiait.ds.server.FileRoute;
+import ar.com.estigiait.ds.route.FileRoute;
 import ar.com.estigiait.ds.tool.Constants;
 import ar.com.estigiait.ds.tool.Util;
 
