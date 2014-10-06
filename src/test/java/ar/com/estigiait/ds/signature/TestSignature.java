@@ -1,5 +1,6 @@
 package ar.com.estigiait.ds.signature;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -22,14 +23,15 @@ public class TestSignature {
 	 * 
 	 */
 	@Test
+	@Ignore
 	public void testSignatureEnveloped(){
 			
-		//
-//		XadesBesSignature.firmar(TestSignature.class.getResource("/factura_in.xml").getPath().toString(),
-//				TestSignature.class.getResource("/usr0061.p12").getPath().toString().toString(),
-//				"usr0061", 
-//				".", 
-//				"factura_out.xml");
+		//TODO: actualizar test
+		XadesBesSignature.firmar(TestSignature.class.getResource("/factura_in.xml").getPath().toString(),
+				TestSignature.class.getResource("/usr0061.p12").getPath().toString().toString(),
+				"usr0061", 
+				".", 
+				"factura_out.xml", null);
 	}
 	
 

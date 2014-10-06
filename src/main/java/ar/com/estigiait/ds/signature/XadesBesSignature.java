@@ -3,6 +3,7 @@ package ar.com.estigiait.ds.signature;
 import java.util.Properties;
 
 import org.w3c.dom.Document;
+import org.xml.sax.SAXParseException;
 
 import es.mityc.firmaJava.libreria.xades.DataToSign;
 import es.mityc.firmaJava.libreria.xades.XAdESSchemas;
@@ -20,6 +21,7 @@ import ar.com.estigiait.ds.tool.Util;
 public class XadesBesSignature extends GenericXMLSignature{
 
 
+	public  org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(getClass());
     
     private static String nameFile;
     private static String pathFile; 
@@ -97,9 +99,10 @@ public class XadesBesSignature extends GenericXMLSignature{
       * 			Path perteneciente al certificado.
       * @param passSignature
       * 			Password del certificado a utilizar.
+     * @throws SAXParseException 
       *            
       */
-     public static Document firmar(String xmlDocument,String pathSignature,String passSignature, Properties conf)
+     public static Document firmar(String xmlDocument,String pathSignature,String passSignature, Properties conf) 
      {               	
     	 XadesBesSignature signature = new XadesBesSignature(Util.getDocument(xmlDocument));
 		 signature.setPassSignature(passSignature);

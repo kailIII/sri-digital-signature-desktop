@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.net.URL;
 import java.security.KeyStore;
@@ -321,16 +323,19 @@ public abstract class GenericXMLSignature {
          KeyStore ks = null;
         try {
             ks = KeyStore.getInstance("PKCS12");       
-            URL url = null;
+            //URL url = null;
+            InputStream in = null;
+            File file = null;
             
             if (conf.getProperty(Constants.MODE).equals(Constants.MODE_DEV)){
-            	url = GenericXMLSignature.class.getResource(pathSignature);
+            	file = new File(Util.makeUrlExternal(pathSignature).toString());
             }else{
-            	url = Util.makeUrlExternal(pathSignature);
+            	file = new File(pathSignature);
             }
             
+            in = new FileInputStream(file);
             
-            ks.load(url.openStream(), passSignature.toCharArray());
+            ks.load(in, passSignature.toCharArray());
         } catch (KeyStoreException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {

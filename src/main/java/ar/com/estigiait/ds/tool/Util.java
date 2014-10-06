@@ -1,9 +1,11 @@
 package ar.com.estigiait.ds.tool;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -16,8 +18,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * Esta clase un conjunto de herramientas utiles.
@@ -27,6 +31,7 @@ import org.xml.sax.SAXException;
  */
 public class Util{
 			
+	Logger log = Logger.getLogger(this.getClass());
 	
 	/**
 	 * Convierte un objeto Date en un String con formato (MM/dd/yyyy)
@@ -100,7 +105,6 @@ public class Util{
 	 
 		try {			
 	 		URL fileURL = makeUrlExternal(Constants.PROP_EXTERNAL);	
-	 		System.out.println(fileURL);
 			input = fileURL.openStream();
 	 
 			//cargamos el archivo de propiedades
@@ -131,7 +135,7 @@ public class Util{
      * @return Document
      * 			El Document asociado al resource
      */
-    public static Document getDocument(String resource) {
+    public static Document getDocument(String resource){
          Document doc = null;
          DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
          dbf.setNamespaceAware(true);
@@ -143,19 +147,19 @@ public class Util{
          } catch (ParserConfigurationException ex) {
              System.err.println("Error al parsear el documento");
              ex.printStackTrace();
-             System.exit(-1);
+             //System.exit(-1);
          } catch (SAXException ex) {
              System.err.println("Error al parsear el documento");
              ex.printStackTrace();
-             System.exit(-1);
+             //System.exit(-1);
          } catch (IOException ex) {
              System.err.println("Error al parsear el documento");
              ex.printStackTrace();
-             System.exit(-1);
+             //System.exit(-1);
          } catch (IllegalArgumentException ex) {
             System.err.println("Error al parsear el documento");
              ex.printStackTrace();
-            System.exit(-1);
+            //System.exit(-1);
          }
          return doc;
      }
@@ -213,5 +217,52 @@ public class Util{
     	}
     	return result;
     }
+    
+    /**
+     * Este metodo convierte un inputstream to string
+     * 	@return InputStream is
+     */
+ 	public static String getStringFromInputStream(InputStream is) {
+  
+ 		BufferedReader br = null;
+ 		StringBuilder sb = new StringBuilder();
+  
+ 		String line;
+ 		try {
+  
+ 			br = new BufferedReader(new InputStreamReader(is));
+ 			while ((line = br.readLine()) != null) {
+ 				sb.append(line);
+ 			}
+  
+ 		} catch (IOException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			if (br != null) {
+ 				try {
+ 					br.close();
+ 				} catch (IOException e) {
+ 					e.printStackTrace();
+ 				}
+ 			}
+ 		}
+ 		return sb.toString();
+ 	}
+ 	
+ 	  /**
+ 	   * Retorna una url sin su prefijo file://
+ 	   * @param String path
+ 	   * @return String path sin prefijo
+ 	   */
+ 	   public static String getPathWithoutPrefixFile(String path){
+ 		   path = path.replaceAll("\\\\", "");
+ 		   System.out.println(path);
+ 		   if (path.contains("file://")){
+ 			   String[] result = path.split("file://");
+ 		   	   return result[1];
+ 		   }else
+ 			   return path;
+ 	    	
+ 	    }
 	
 }

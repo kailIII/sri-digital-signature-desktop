@@ -9,7 +9,10 @@ import ar.com.estigiait.ds.tool.Constants;
 import ar.com.estigiait.ds.tool.Util;
 
 /**
- * Main class that can upload files to an existing FTP server.
+ * Clase que contiene un ejecutor sin UI
+ * del proceso de firmado con el objeto de poder 
+ * probar el proceso antes de generar su GUI.
+ * 
  */
 public final class Client {
 

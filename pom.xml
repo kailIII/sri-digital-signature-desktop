@@ -209,7 +209,8 @@
 		    <version>1.1.7</version>
 		    <scope>system</scope>
 		    <systemPath>${project.basedir}/lib/MITyCLibCrypt-1.1.7.jar</systemPath>
-		</dependency>					
+		</dependency>	
+						
 		<!-- =========================================================== -->	
 	</dependencies>
 
@@ -242,7 +243,7 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>ar.com.estigiait.client.ClientFTP</mainClass>
+                    <mainClass>ar.com.estigiait.client.Client</mainClass>
                     <includePluginDependencies>false</includePluginDependencies>
                 </configuration>
             </plugin>
